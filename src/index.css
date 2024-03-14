@@ -74,3 +74,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: "Regular";
+  src: local("PSL-Omyim"), url("./fonts/PSL-Omyim.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Bold";
+  src: local("PSL-Omyim-Bold"),
+    url("./fonts/PSL-Omyim-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Italic";
+  src: local("PSL-Omyim-Italic"),
+    url("./fonts/PSL-Omyim-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BoldItalic";
+  src: local("PSL-Omyim-Bold-Italic"),
+    url("./fonts/PSL-Omyim-Bold-Italic.ttf") format("truetype");
+}
