@@ -17,6 +17,12 @@ module.exports = {
       },
     },
     extend: {
+      width: {
+        1080: "1080px",
+      },
+      height: {
+        1920: "1920px",
+      },
       fontFamily: {
         primaryRegular: ["Regular"],
         primaryBold: ["Bold"],
@@ -29,6 +35,11 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        button: {
+          DEFAULT: "#ff9b02",
+          primary: "#ffac4c",
+          secondary: "#ff5400",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

@@ -1,4 +1,6 @@
+import CapturePage from "@/pages/CapturePage";
 import HomePage from "@/pages/Home";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const AppRouter = () => {
@@ -6,6 +8,7 @@ const AppRouter = () => {
     <BrowserRouter basename="">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/capture" element={<CapturePage />} />
       </Routes>
     </BrowserRouter>
   );

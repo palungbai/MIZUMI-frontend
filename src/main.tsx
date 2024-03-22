@@ -5,6 +5,8 @@ import AppRouter from "./routes/routes.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppRouter />
+    <div className="w-1080 h-1920">
+      <AppRouter />
+    </div>
   </React.StrictMode>
 );
