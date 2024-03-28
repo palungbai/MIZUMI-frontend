@@ -37,7 +37,6 @@ const CapturePage = () => {
         navigate(
           `/result?refId=${data.id}&sunscreenRefId=${data.sunscreenRefId}&noSunscreenRefId=${data.noSunscreenRefId}`
         );
-        console.log(data);
       }
     } catch (error) {
       console.error("Error capturing image: ", error);
@@ -45,7 +44,7 @@ const CapturePage = () => {
   }, [navigate, webcamRef]);
 
   return (
-    <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/02CapturePage/CapturingPageBackground.png')] bg-contain">
+    <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/02-capture-page/capturing-page-bg.png')] bg-contain">
       <Webcam
         audio={false}
         ref={webcamRef}
@@ -55,7 +54,7 @@ const CapturePage = () => {
         className="z-10 absolute bottom-[453px] left-[190px] rounded-[30px]"
       />
 
-      <div className="absolute h-[720px] w-[720px] bottom-[453px] left-[190px] bg-center bg-[url('/temp.svg')] bg-contain z-20 opacity-75 bg-no-repeat rounded-[48px] "></div>
+      <div className="absolute h-[720px] w-[720px] bottom-[453px] left-[190px] bg-center bg-[url('/person-shadow.svg')] bg-contain z-20 opacity-75 bg-no-repeat rounded-[48px] "></div>
 
       <div className="absolute bottom-40 left-0 flex justify-center w-full">
         <Button
