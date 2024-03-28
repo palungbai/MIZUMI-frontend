@@ -1,4 +1,3 @@
-import { AlertDestructive } from "@/components/ErrorAlert";
 import { ResultSkeleton } from "@/components/ResultSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -28,8 +27,6 @@ const ResultPage = () => {
   const id = query.get(UrlKey.ID);
   const sunscreenRefId = query.get(UrlKey.SUNSCREEN);
   const noSunscreenRefId = query.get(UrlKey.NOSUNSCREEN);
-
-  console.log(id, sunscreenRefId, noSunscreenRefId);
 
   if (!id || !sunscreenRefId || !noSunscreenRefId) {
     navigate("/");
@@ -66,7 +63,6 @@ const ResultPage = () => {
       }
     },
     refetchInterval: (query) => {
-      console.log(query.state.data?.status);
       return query.state.data?.status === "pending" ? 2000 : false;
     },
   });
@@ -79,6 +75,7 @@ const ResultPage = () => {
         ) : (
           <img
             src={noSunscreenImgUrl}
+            className="rounded-2xl"
             alt="result"
             height="460px"
             width="460px"
@@ -91,13 +88,13 @@ const ResultPage = () => {
         ) : (
           <img
             src={sunscreenImgUrl}
+            className="rounded-2xl"
             alt="result"
             height="460px"
             width="460px"
           />
         )}
       </div>
-      {error && <AlertDestructive />}
     </div>
   );
 };
