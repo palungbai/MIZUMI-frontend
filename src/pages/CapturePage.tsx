@@ -1,4 +1,3 @@
-// import Camera from "@/components/Camera";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useCallback, useRef } from "react";
@@ -18,25 +17,27 @@ const CapturePage = () => {
   const capture = useCallback(async () => {
     try {
       const imageSrc = webcamRef.current?.getScreenshot();
-      console.log(imageSrc);
 
       if (imageSrc) {
         const resp = await axios.post(
-          "https://mizumi-backend-dev.nkaewam.dev/api/facial-transform",
+          `${import.meta.env.VITE_APP_API_URL as string}/api/facial-transform`,
           {
             imgData: imageSrc,
           },
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibG9jYXRpb24iOiJERVYtTE9DQVRJT04iLCJpYXQiOjE1MTYyMzkwMjJ9.m2IB5M_rmMMBwPZGX8aN0XQe1qK1GbCrvEvibREAvXk",
+              Authorization: `Bearer ${
+                import.meta.env.VITE_APP_API_TOKEN as string
+              }`,
               "Content-Type": "application/json",
             },
           }
         );
         const data = resp.data;
+        navigate(
+          `/result?refId=${data.id}&sunscreenRefId=${data.sunscreenRefId}&noSunscreenRefId=${data.noSunscreenRefId}`
+        );
         console.log(data);
-        navigate("/result", { ...data });
       }
     } catch (error) {
       console.error("Error capturing image: ", error);
