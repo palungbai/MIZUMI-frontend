@@ -1,13 +1,12 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from "@radix-ui/react-dialog";
+import { Button } from "../components/ui/button";
+import { DialogHeader, DialogFooter } from "../components/ui/dialog";
 
 const HomePage = () => {
   return (

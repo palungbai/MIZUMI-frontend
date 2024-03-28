@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useCallback, useRef } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
 
 const videoConstraints = {
   width: 720,

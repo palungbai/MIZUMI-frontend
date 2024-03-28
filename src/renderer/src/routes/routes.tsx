@@ -1,8 +1,7 @@
-import CapturePage from "@/pages/CapturePage";
-import HomePage from "@/pages/Home";
-import ResultPage from "@/pages/ResultPage";
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ResultPage from "../pages/ResultPage";
+import HomePage from "../pages/Home";
+import CapturePage from "../pages/CapturePage";
 
 const AppRouter = () => {
   return (
