@@ -32,7 +32,7 @@ const ResultPage = () => {
     navigate("/");
   }
 
-  const { error } = useQuery<ImageResponse | undefined>({
+  useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
     queryFn: async () => {
       const endpoints = `${
