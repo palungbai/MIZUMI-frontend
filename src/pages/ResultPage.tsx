@@ -1,15 +1,10 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoadingPage } from "./LoadingPage";
-
-enum UrlKey {
-  ID = "refId",
-  SUNSCREEN = "sunscreenRefId",
-  NOSUNSCREEN = "noSunscreenRefId",
-}
+import { UrlKey, useUrlQuery } from "@/hooks/useUrlQuery";
 
 interface ImageResponse {
   id: string;
@@ -19,19 +14,12 @@ interface ImageResponse {
 }
 
 const ResultPage = () => {
-  const { search } = useLocation();
   const navigate = useNavigate();
+  const { id, noSunscreenRefId, sunscreenRefId, query } = useUrlQuery();
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const query = useMemo(() => new URLSearchParams(search), [search]);
-  const id = query.get(UrlKey.ID);
-  const sunscreenRefId = query.get(UrlKey.SUNSCREEN);
-  const noSunscreenRefId = query.get(UrlKey.NOSUNSCREEN);
-
-  if (!id || !sunscreenRefId || !noSunscreenRefId) {
-    navigate("/");
-  }
+  
 
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
@@ -99,6 +87,18 @@ const ResultPage = () => {
             width="460px"
           />
         )}
+      </div>
+      <div className="absolute bottom-[168px] flex flex-row items-center justify-between w-full px-10">
+        <a href='/' className="bg-white rounded-full p-7">
+          <img src="/back-icon.svg" width='60px' />
+        </a>
+        <a
+          href={`/display?${query.toString()}`}
+          className="font-primaryBold text-white text-7xl py-3 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 flex flex-row items-center gap-4"
+        >
+          รับครีมกันแดด
+          <img src="/next-icon.svg" />
+        </a>
       </div>
     </div>
   );
