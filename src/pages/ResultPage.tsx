@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LoadingPage } from "./LoadingPage";
 
 enum UrlKey {
   ID = "refId",
@@ -66,6 +67,10 @@ const ResultPage = () => {
       return query.state.data?.status === "pending" ? 2000 : false;
     },
   });
+
+  if (isLoading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/04-result-page/result-page-bg.png')] bg-contain ">
