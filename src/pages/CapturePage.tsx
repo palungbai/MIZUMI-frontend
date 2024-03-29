@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import CountdownTimer from "@/components/CountdownTimer";
+import Spinner from "@/components/Spinner";
 
 const videoConstraints = {
   width: 720,
@@ -12,11 +13,12 @@ const videoConstraints = {
 };
 
 const CapturePage = () => {
+  const DEFAULT_COUNT_DOWN_TIME = 5;
   const webcamRef = useRef<Webcam>(null);
   const navigate = useNavigate();
-  const [remainingTime, setRemainingTime] = useState(5);
+  const [remainingTime, setRemainingTime] = useState(DEFAULT_COUNT_DOWN_TIME);
   const [isCounting, setIsCounting] = useState(false);
-  const [buttonClicked, setButtonClicked] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const capture = useCallback(async () => {
     try {
@@ -38,7 +40,7 @@ const CapturePage = () => {
           }
         );
         const data = resp.data;
-        console.log(data);
+
         navigate(
           `/result?refId=${data.id}&sunscreenRefId=${data.sunscreenRefId}&noSunscreenRefId=${data.noSunscreenRefId}`
         );
@@ -49,19 +51,21 @@ const CapturePage = () => {
   }, [navigate, webcamRef]);
 
   const startCapture = () => {
-    if (!buttonClicked) {
+    if (!buttonDisabled) {
       setIsCounting(true);
-      setRemainingTime(5);
-      setButtonClicked(true);
-      const countdownInterval = setInterval(() => {
-        setRemainingTime((prevTime) => prevTime - 1);
-      }, 1000);
+      setButtonDisabled(true);
 
-      setTimeout(() => {
-        clearInterval(countdownInterval);
-        setIsCounting(false);
-        capture();
-      }, 5000);
+      const interval = setInterval(() => {
+        if (remainingTime === 1) {
+          clearInterval(interval);
+          setIsCounting(false);
+          setButtonDisabled(false);
+          capture();
+          setRemainingTime(DEFAULT_COUNT_DOWN_TIME);
+        } else {
+          setRemainingTime((prev) => prev - 1);
+        }
+      }, 1000);
     }
   };
 
@@ -78,14 +82,16 @@ const CapturePage = () => {
 
       <CountdownTimer remaining={remainingTime} isCounting={isCounting} />
 
-      <div className="absolute h-[720px] w-[720px] bottom-[480px] left-[190px] bg-center bg-[url('/person-shadow.svg')] bg-contain z-20 opacity-75 bg-no-repeat rounded-[48px] " />
+      <div className="absolute h-[720px] w-[720px] bottom-[480px] left-[190px] bg-center bg-[url('/person-shadow.svg')] bg-contain z-20 opacity-75 bg-no-repeat rounded-[48px]" />
       <Button
-        className={`absolute font-primaryBold bottom-[237px] left-[357px] text-7xl py-12 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 ${
-          buttonClicked && "pointer-events-none opacity-50"
+        className={`flex flex-row items-center gap-3 absolute font-primaryBold bottom-[237px] left-[357px] text-7xl py-12 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 ${
+          buttonDisabled && "opacity-50 left-[338px]"
         }`}
         onClick={startCapture}
+        disabled={buttonDisabled}
       >
         สแกนใบหน้า
+        {buttonDisabled && <Spinner />}
       </Button>
     </div>
   );
