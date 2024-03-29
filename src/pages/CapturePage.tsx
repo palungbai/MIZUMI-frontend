@@ -55,16 +55,16 @@ const CapturePage = () => {
       setIsCounting(true);
       setButtonDisabled(true);
 
-      const interval = setInterval(() => {
-        if (remainingTime === 1) {
-          clearInterval(interval);
-          setIsCounting(false);
-          setButtonDisabled(false);
-          capture();
-          setRemainingTime(DEFAULT_COUNT_DOWN_TIME);
-        } else {
-          setRemainingTime((prev) => prev - 1);
-        }
+      const countdownInterval = setInterval(() => {
+        setRemainingTime((prevTime) => {
+          const newTime = prevTime - 1;
+          if (newTime === 0) {
+            clearInterval(countdownInterval);
+            setIsCounting(false);
+            capture();
+          }
+          return newTime;
+        });
       }, 1000);
     }
   };
