@@ -64,7 +64,7 @@ const ResultPage = () => {
       }
     },
     refetchInterval: (query) => {
-      return query.state.data?.status === "pending" ? 2000 : false;
+      return query.state.data?.status === "pending" ? 10000 : false;
     },
   });
 
