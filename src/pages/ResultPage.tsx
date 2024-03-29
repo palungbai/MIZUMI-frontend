@@ -1,4 +1,4 @@
-import { ResultSkeleton } from "@/components/ResultSkeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMemo, useState } from "react";
@@ -32,7 +32,7 @@ const ResultPage = () => {
     navigate("/");
   }
 
-  const { error } = useQuery<ImageResponse | undefined>({
+  useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
     queryFn: async () => {
       const endpoints = `${
@@ -69,9 +69,9 @@ const ResultPage = () => {
 
   return (
     <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/04-result-page/result-page-bg.png')] bg-contain ">
-      <div className="absolute bg-black w-[460px] h-[666px] bottom-[444px] left-[70px] rounded-2xl z-10">
+      <div className="absolute bg-black w-[460px] h-[460px] bottom-[550px] left-[70px] rounded-2xl z-10">
         {isLoading ? (
-          <ResultSkeleton />
+          <Skeleton className="h-full w-full rounded-2xl" />
         ) : (
           <img
             src={noSunscreenImgUrl}
@@ -82,9 +82,9 @@ const ResultPage = () => {
           />
         )}
       </div>
-      <div className="absolute bg-black w-[460px] h-[666px] bottom-[444px] right-[70px] rounded-2xl z-10">
+      <div className="absolute bg-black w-[460px] h-[460px] bottom-[550px] right-[70px] rounded-2xl z-10">
         {isLoading ? (
-          <ResultSkeleton />
+          <Skeleton className="h-full w-full rounded-2xl" />
         ) : (
           <img
             src={sunscreenImgUrl}
