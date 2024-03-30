@@ -1,9 +1,11 @@
-import CapturePage from "@/pages/CapturePage";
-import DisplayPage from "@/pages/DisplayPage";
-import HomePage from "@/pages/Home";
-import ResultPage from "@/pages/ResultPage";
+import { lazy } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+const HomePage = lazy(() => import("@/pages/Home"));
+const CapturePage = lazy(() => import("@/pages/CapturePage"));
+const ResultPage = lazy(() => import("@/pages/ResultPage"));
+const DisplayPage = lazy(() => import("@/pages/DisplayPage"));
 
 const AppRouter = () => {
   return (
