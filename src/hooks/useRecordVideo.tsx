@@ -7,7 +7,7 @@ export const useRecordVideo = () => {
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { video: true }
   );
-  const VIDEO_DURATION = 5000;
+  const VIDEO_DURATION = 6000;
 
   useEffect(() => {
     const handleRecord = async () => {
