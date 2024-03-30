@@ -1,4 +1,6 @@
-import { lazy } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { LoadingPage } from "@/pages/LoadingPage";
+import { Suspense, lazy } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -10,15 +12,38 @@ const AdsPage = lazy(() => import("@/pages/AdsPage"));
 
 const AppRouter = () => {
   return (
-    <BrowserRouter basename="">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/capture" element={<CapturePage />} />
-        <Route path="/result" element={<ResultPage />} />
-        <Route path="/ads" element={<AdsPage />} />
-        <Route path="/display" element={<DisplayPage />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter basename="">
+        <Routes>
+          <Route path="/" element={
+            <Suspense fallback={<LoadingPage />}>
+              <HomePage />
+            </Suspense>
+          } />
+          <Route path="/capture" element={
+            <Suspense fallback={<LoadingPage />}>
+              <CapturePage />
+            </Suspense>
+          } />
+          <Route path="/result" element={
+            <Suspense fallback={<LoadingPage />}>
+              <ResultPage />
+            </Suspense>
+          } />
+          <Route path="/ads" element={
+            <Suspense fallback={<LoadingPage />}>
+              <AdsPage />
+            </Suspense>
+          } />
+          <Route path="/display" element={
+            <Suspense fallback={<LoadingPage />}>
+              <DisplayPage />
+            </Suspense>
+          } />
+        </Routes>
+      </BrowserRouter>
+      <Toaster />
+    </>
   );
 };
 
