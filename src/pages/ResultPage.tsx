@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingPage } from "./LoadingPage";
 import { UrlKey, useUrlQuery } from "@/hooks/useUrlQuery";
+import { VideoRecorder } from "@/components/ui/VideoRecorder";
 
 interface ImageResponse {
   id: string;
@@ -100,6 +101,7 @@ const ResultPage = () => {
           <img src="/next-icon.svg" />
         </a>
       </div>
+      <VideoRecorder />
     </div>
   );
 };
