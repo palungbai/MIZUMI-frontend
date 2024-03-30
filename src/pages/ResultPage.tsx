@@ -8,6 +8,7 @@ import { useUrlQuery } from "@/hooks/useUrlQuery";
 import { ImageResponse } from "@/types/api";
 import { UrlKey } from "@/constants/UrlKeys";
 import { useRecordVideo } from "@/hooks/useRecordVideo";
+import LinkButton from "@/components/LinkButton";
 
 const ResultPage = () => {
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ const ResultPage = () => {
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
 
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
@@ -61,19 +61,18 @@ const ResultPage = () => {
     useRecordVideo();
     return (
       <div className="absolute bottom-[168px] flex flex-row items-center justify-between w-full px-10">
-        <a href='/' className="bg-white rounded-full p-7">
-          <img src="/back-icon.svg" width='60px' />
+        <a href="/" className="bg-white rounded-full p-7">
+          <img src="/back-icon.svg" width="60px" />
         </a>
-        <a
-          href='/display'
-          className="font-primaryBold text-white text-7xl py-3 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 flex flex-row items-center gap-4"
-        >
-          รับครีมกันแดด
-          <img src="/next-icon.svg" />
-        </a>
+        <LinkButton
+          content="รับครีมกันแดด"
+          href="/display"
+          icon={<img src="/next-icon.svg" />}
+          className="flex flex-row items-center gap-4"
+        />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/04-result-page/result-page-bg.png')] bg-contain ">

@@ -1,3 +1,4 @@
+import LinkButton from "@/components/LinkButton";
 import { UrlKey } from "@/constants/UrlKeys";
 import { useNavigate } from "react-router-dom";
 
@@ -38,12 +39,11 @@ const DisplayPage = () => {
           className="absolute z-10 right-[0px] bottom-[400px]"
         />
 
-        <a
-          href="/advertise"
-          className="absolute font-primaryBold text-white bottom-[168px] left-[357px] text-7xl py-3 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50"
-        >
-          รับครีมกันแดด
-        </a>
+        <LinkButton
+          content="รับครีมกันแดด"
+          href="/ads"
+          className="absolute bottom-[168px] left-[357px]"
+        />
       </div>
     </>
   );
