@@ -42,10 +42,13 @@ const ResultPage = () => {
         setNoSunscreenImgUrl(data.noSunscreenImgUrl);
         setSunscreenImgUrl(data.sunscreenImgUrl);
         localStorage.setItem(UrlKey.URL, data.sunscreenImgUrl);
-        setIsLoading(false);
+        if (data.status === "succeeded") {
+          setIsLoading(false);
+        }
         return data;
       } catch (error) {
         console.error("Error fetching result: ", error);
+        setIsLoading(false);
         toast({
           title: "Uh oh! Something went wrong.",
           description: "There was a problem with your request.",
