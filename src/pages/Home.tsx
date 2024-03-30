@@ -1,3 +1,4 @@
+import LinkButton from "@/components/LinkButton";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -32,12 +33,15 @@ const HomePage = () => {
         <img src="../01-home-page/cat.gif" alt="cat" width={450} height={600} />
       </div>
 
-      <div className="absolute bottom-60 left-0 flex justify-center w-full z-40">
+      <div className="absolute w-full z-40">
         <Dialog>
           <DialogTrigger>
-            <Button className=" font-primaryRegular text-white text-7xl py-11 px-24 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl">
-              เล่นเลย
-            </Button>
+            <LinkButton
+              content="เล่นเลย"
+              href="#"
+              icon={<img src="/next-icon.svg" />}
+              className="absolute flex flex-row items-center gap-4 py-3 top-[1550px] left-[390px]"
+            />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

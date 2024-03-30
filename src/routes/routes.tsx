@@ -1,3 +1,4 @@
+import AdsPage from "@/pages/AdsPage";
 import CapturePage from "@/pages/CapturePage";
 import DisplayPage from "@/pages/DisplayPage";
 import HomePage from "@/pages/Home";
@@ -12,6 +13,7 @@ const AppRouter = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/capture" element={<CapturePage />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/ads" element={<AdsPage />} />
         <Route path="/display" element={<DisplayPage />} />
       </Routes>
     </BrowserRouter>
