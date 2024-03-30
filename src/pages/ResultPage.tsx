@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import baseAxios from "@/common/axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoadingPage } from "./LoadingPage";
@@ -23,21 +23,12 @@ const ResultPage = () => {
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
     queryFn: async () => {
-      const endpoints = `${
-        import.meta.env.VITE_APP_API_URL as string
-      }/api/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${
-        UrlKey.NOSUNSCREEN
-      }=${noSunscreenRefId}`;
+      const endpoints = `/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${UrlKey.NOSUNSCREEN}=${noSunscreenRefId}`;
 
       try {
         setIsLoading(true);
-        const resp = await axios.get(endpoints, {
-          headers: {
-            Authorization: `Bearer ${
-              import.meta.env.VITE_APP_API_TOKEN as string
-            }`,
-          },
-        });
+        const resp = await baseAxios.get(endpoints)
+
         const data: ImageResponse = resp.data;
         setNoSunscreenImgUrl(data.noSunscreenImgUrl);
         setSunscreenImgUrl(data.sunscreenImgUrl);

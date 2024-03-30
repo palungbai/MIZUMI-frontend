@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
+import baseAxios from "@/common/axios";
 import { useEffect, useCallback } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 
@@ -26,18 +26,11 @@ export const useRecordVideo = () => {
 
       const formData = new FormData();
       formData.append("file", blob, `video-${Date.now()}.webm`);
-      await axios.post(
-        `${import.meta.env.VITE_APP_API_URL}/api/video-polling`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${
-              import.meta.env.VITE_APP_API_TOKEN as string
-            }`,
-          },
-        }
-      );
+      await baseAxios.post(`/video-polling`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
     } catch (error) {
       console.error("Error uploading video: ", error);
     }
