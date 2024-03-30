@@ -1,11 +1,6 @@
+import { UrlKey } from "@/constants/UrlKeys";
 import { useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-export enum UrlKey {
-  ID = "refId",
-  SUNSCREEN = "sunscreenRefId",
-  NOSUNSCREEN = "noSunscreenRefId",
-}
 
 export const useUrlQuery = () => {
   const { search } = useLocation();
