@@ -6,6 +6,7 @@ const HomePage = lazy(() => import("@/pages/Home"));
 const CapturePage = lazy(() => import("@/pages/CapturePage"));
 const ResultPage = lazy(() => import("@/pages/ResultPage"));
 const DisplayPage = lazy(() => import("@/pages/DisplayPage"));
+const AdsPage = lazy(() => import("@/pages/AdsPage"));
 
 const AppRouter = () => {
   return (
