@@ -46,7 +46,7 @@ const VideoRecorder = () => {
     if (!mediaBlobUrl) return;
 
     console.log(mediaBlobUrl);
-    // handleSubmitVideo();
+    handleSubmitVideo();
   }, [mediaBlobUrl]);
 
   return (
