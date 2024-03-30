@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import axios from "axios";
+import baseAxios from "@/common/axios";
 import { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
@@ -28,19 +28,11 @@ const CapturePage = () => {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await axios.post(
-          `${import.meta.env.VITE_APP_API_URL as string}/api/facial-transform`,
+        const resp = await baseAxios.post(
+          '/facial-transform',
           {
             imgData: imageSrc,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${
-                import.meta.env.VITE_APP_API_TOKEN as string
-              }`,
-              "Content-Type": "application/json",
-            },
-          }
         );
         const data = resp.data;
 
