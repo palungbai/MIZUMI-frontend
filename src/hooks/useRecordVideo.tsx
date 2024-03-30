@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
-import { useCallback, useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
 
-const VideoRecorder = () => {
-  const { startRecording, stopRecording, mediaBlobUrl } =
-    useReactMediaRecorder({ video: true });
-    const VIDEO_DURATION = 5000;
+export const useRecordVideo = () => {
+  const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
+    { video: true }
+  );
+  const VIDEO_DURATION = 5000;
 
   useEffect(() => {
     const handleRecord = async () => {
@@ -48,8 +49,4 @@ const VideoRecorder = () => {
     console.log(mediaBlobUrl);
     handleSubmitVideo();
   }, [mediaBlobUrl]);
-
-  return <> </>
 };
-
-export { VideoRecorder };
