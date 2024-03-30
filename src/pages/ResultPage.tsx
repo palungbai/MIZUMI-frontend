@@ -19,7 +19,6 @@ const ResultPage = () => {
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
 
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
@@ -89,8 +88,8 @@ const ResultPage = () => {
         )}
       </div>
       <div className="absolute bottom-[168px] flex flex-row items-center justify-between w-full px-10">
-        <a href='/' className="bg-white rounded-full p-7">
-          <img src="/back-icon.svg" width='60px' />
+        <a href="/" className="bg-white rounded-full p-7">
+          <img src="/back-icon.svg" width="60px" />
         </a>
         <a
           href={`/display?${query.toString()}`}
