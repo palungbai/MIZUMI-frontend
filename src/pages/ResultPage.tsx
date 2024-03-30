@@ -9,6 +9,8 @@ import { ImageResponse } from "@/types/api";
 import { UrlKey } from "@/constants/UrlKeys";
 import { useRecordVideo } from "@/hooks/useRecordVideo";
 import LinkButton from "@/components/LinkButton";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 const ResultPage = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const ResultPage = () => {
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { toast } = useToast()
 
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
@@ -39,13 +42,16 @@ const ResultPage = () => {
         setNoSunscreenImgUrl(data.noSunscreenImgUrl);
         setSunscreenImgUrl(data.sunscreenImgUrl);
         localStorage.setItem(UrlKey.URL, data.sunscreenImgUrl);
-        if (data.status === "succeeded") {
-          setIsLoading(false);
-        }
+        setIsLoading(false);
         return data;
       } catch (error) {
         console.error("Error fetching result: ", error);
-        navigate("/");
+        toast({
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+          action: <ToastAction onClick={() => navigate("/")} altText="Try again">back to home</ToastAction>,
+          variant: "destructive",
+        })
       }
     },
     refetchInterval: (query) => {

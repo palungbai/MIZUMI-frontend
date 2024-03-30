@@ -5,6 +5,8 @@ import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
 import CountdownTimer from "@/components/CountdownTimer";
 import Spinner from "@/components/Spinner";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 
 const videoConstraints = {
   width: 720,
@@ -19,6 +21,7 @@ const CapturePage = () => {
   const [remainingTime, setRemainingTime] = useState(DEFAULT_COUNT_DOWN_TIME);
   const [isCounting, setIsCounting] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const { toast } = useToast();
 
   const capture = useCallback(async () => {
     try {
@@ -46,9 +49,17 @@ const CapturePage = () => {
         );
       }
     } catch (error) {
-      console.error("Error capturing image: ", error);
+      toast({
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        action: <ToastAction onClick={() => {
+          setButtonDisabled(false);
+          navigate('/capture')
+        }} altText="Try again">Try again</ToastAction>,
+        variant: "destructive",
+      })
     }
-  }, [navigate, webcamRef]);
+  }, [navigate, toast]);
 
   const startCapture = () => {
     if (!buttonDisabled) {
