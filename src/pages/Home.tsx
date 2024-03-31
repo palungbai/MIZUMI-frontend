@@ -3,7 +3,7 @@ import { LoadingPage } from "./LoadingPage";
 import { useLoadBg } from "@/hooks/useLoadBg";
 
 const HomePage = () => {
-  const { isBgLoaded } = useLoadBg("/01-home-page/homePageBg.svg");
+  const { isBgLoaded } = useLoadBg("/01-home-page/homePageBg.png");
 
   if (!isBgLoaded) return <LoadingPage />;
 
