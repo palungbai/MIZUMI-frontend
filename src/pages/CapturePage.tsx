@@ -7,6 +7,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import Spinner from "@/components/Spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { UrlKey } from "@/constants/UrlKeys";
 
 const videoConstraints = {
   width: 720,
@@ -28,28 +29,32 @@ const CapturePage = () => {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await baseAxios.post(
-          '/facial-transform',
-          {
-            imgData: imageSrc,
-          },
-        );
+        const resp = await baseAxios.post("/facial-transform", {
+          imgData: imageSrc,
+        });
         const data = resp.data;
-
-        navigate(
-          `/result?refId=${data.id}&sunscreenRefId=${data.sunscreenRefId}&noSunscreenRefId=${data.noSunscreenRefId}`
-        );
+        localStorage.setItem(UrlKey.NOSUNSCREEN, data.noSunscreenRefId);
+        localStorage.setItem(UrlKey.SUNSCREEN, data.sunscreenRefId);
+        localStorage.setItem(UrlKey.ID, data.refId);
+        navigate(`/result`);
       }
     } catch (error) {
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
-        action: <ToastAction onClick={() => {
-          setButtonDisabled(false);
-          navigate('/#/capture')
-        }} altText="Try again">Try again</ToastAction>,
+        action: (
+          <ToastAction
+            onClick={() => {
+              setButtonDisabled(false);
+              navigate("/#/capture");
+            }}
+            altText="Try again"
+          >
+            Try again
+          </ToastAction>
+        ),
         variant: "destructive",
-      })
+      });
     }
   }, [navigate, toast]);
 
