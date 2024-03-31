@@ -9,6 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useTimeout } from "@/hooks/useTimeout";
 import { DEFAULT_TIMEOUT } from "@/constants/timeout";
+import { UrlKey } from "@/constants/UrlKeys";
 
 const videoConstraints = {
   width: 720,
@@ -35,10 +36,10 @@ const CapturePage = () => {
           imgData: imageSrc,
         });
         const data = resp.data;
-
-        navigate(
-          `/result?refId=${data.id}&sunscreenRefId=${data.sunscreenRefId}&noSunscreenRefId=${data.noSunscreenRefId}`
-        );
+        localStorage.setItem(UrlKey.ID, data.refId);
+        localStorage.setItem(UrlKey.SUNSCREEN, data.sunscreenRefId);
+        localStorage.setItem(UrlKey.NOSUNSCREEN, data.noSunscreenRefId);
+        navigate(`/result`);
       }
     } catch (error) {
       toast({
