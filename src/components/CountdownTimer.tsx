@@ -21,7 +21,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
               กรุณามองกล้องด้านบน
             </h1>
             <img
-              src="../../public/arrow-up-icon.svg"
+              src="/arrow-up-icon.svg"
               alt="arrow-up"
               className="w-[70px] h-[70px] self-center"
             />
