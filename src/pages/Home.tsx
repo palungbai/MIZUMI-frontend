@@ -25,12 +25,22 @@ const HomePage = () => {
         className="absolute z-30"
       />
 
-      <div className="absolute bottom-[481px] left-[-54px] rotate-[5deg] ">
-        <img src="../01-home-page/cat.gif" alt="cat" width={450} height={600} />
+      <div className="absolute bottom-[535px] left-[-54px] rotate-[5deg] border-[16px] border-white rounded-3xl">
+        <img
+          src="../01-home-page/present-model.png"
+          alt="cat"
+          width={450}
+          height={600}
+        />
       </div>
 
-      <div className="absolute bottom-[453px] right-[-60px] rotate-[-10deg]">
-        <img src="../01-home-page/cat.gif" alt="cat" width={450} height={600} />
+      <div className="absolute bottom-[496px] right-[-60px] rotate-[-10deg] border-[16px] border-white rounded-3xl">
+        <img
+          src="../01-home-page/future-model.png"
+          alt="cat"
+          width={450}
+          height={600}
+        />
       </div>
 
       <div className="absolute w-full z-40">
