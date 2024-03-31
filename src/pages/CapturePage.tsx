@@ -31,7 +31,7 @@ const CapturePage = () => {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await baseAxios.post("api/facial-transform", {
+        const resp = await baseAxios.post("/facial-transform", {
           imgData: imageSrc,
         });
         const data = resp.data;
