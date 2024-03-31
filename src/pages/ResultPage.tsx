@@ -11,23 +11,26 @@ import { useRecordVideo } from "@/hooks/useRecordVideo";
 import LinkButton from "@/components/LinkButton";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useTimeout } from "@/hooks/useTimeout";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout";
 
 const ResultPage = () => {
   const navigate = useNavigate();
+
   const { id, noSunscreenRefId, sunscreenRefId } = useUrlQuery();
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { toast } = useToast()
+  const { toast } = useToast();
 
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
     queryFn: async () => {
-      const endpoints = `/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${UrlKey.NOSUNSCREEN}=${noSunscreenRefId}`;
+      const endpoints = `/api/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${UrlKey.NOSUNSCREEN}=${noSunscreenRefId}`;
 
       try {
         setIsLoading(true);
-        const resp = await baseAxios.get(endpoints)
+        const resp = await baseAxios.get(endpoints);
 
         const data: ImageResponse = resp.data;
         setNoSunscreenImgUrl(data.noSunscreenImgUrl);
@@ -43,9 +46,13 @@ const ResultPage = () => {
         toast({
           title: "Uh oh! Something went wrong.",
           description: "There was a problem with your request.",
-          action: <ToastAction onClick={() => navigate("/")} altText="Try again">back to home</ToastAction>,
+          action: (
+            <ToastAction onClick={() => navigate("/")} altText="Try again">
+              back to home
+            </ToastAction>
+          ),
           variant: "destructive",
-        })
+        });
       }
     },
     refetchInterval: (query) => {
@@ -58,6 +65,7 @@ const ResultPage = () => {
   }
 
   const NavigationButtons = () => {
+    useTimeout({ duration: DEFAULT_TIMEOUT });
     useRecordVideo();
     return (
       <div className="absolute bottom-[168px] flex flex-row items-center justify-between w-full px-10">
