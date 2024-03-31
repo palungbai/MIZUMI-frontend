@@ -26,7 +26,7 @@ const ResultPage = () => {
   useQuery<ImageResponse | undefined>({
     queryKey: ["facial-transform-poll", id],
     queryFn: async () => {
-      const endpoints = `/api/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${UrlKey.NOSUNSCREEN}=${noSunscreenRefId}`;
+      const endpoints = `/facial-transform-poll/${id}?${UrlKey.SUNSCREEN}=${sunscreenRefId}&${UrlKey.NOSUNSCREEN}=${noSunscreenRefId}`;
 
       try {
         setIsLoading(true);
