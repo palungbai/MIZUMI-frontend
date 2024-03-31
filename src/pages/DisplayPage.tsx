@@ -1,10 +1,13 @@
 import LinkButton from "@/components/LinkButton";
 import { useToast } from "@/components/ui/use-toast";
 import { UrlKey } from "@/constants/UrlKeys";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout";
+import { useTimeout } from "@/hooks/useTimeout";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useNavigate } from "react-router-dom";
 
 const DisplayPage = () => {
+  useTimeout({ duration: DEFAULT_TIMEOUT })
   const sunscreenUrl = localStorage.getItem(UrlKey.URL);
   const navigate = useNavigate();
   const { toast } = useToast();

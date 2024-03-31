@@ -7,6 +7,8 @@ import CountdownTimer from "@/components/CountdownTimer";
 import Spinner from "@/components/Spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useTimeout } from "@/hooks/useTimeout";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout";
 
 const videoConstraints = {
   width: 720,
@@ -22,18 +24,16 @@ const CapturePage = () => {
   const [isCounting, setIsCounting] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { toast } = useToast();
+  useTimeout({ duration: DEFAULT_TIMEOUT });
 
   const capture = useCallback(async () => {
     try {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await baseAxios.post(
-          '/facial-transform',
-          {
-            imgData: imageSrc,
-          },
-        );
+        const resp = await baseAxios.post("/facial-transform", {
+          imgData: imageSrc,
+        });
         const data = resp.data;
 
         navigate(
@@ -44,12 +44,19 @@ const CapturePage = () => {
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
-        action: <ToastAction onClick={() => {
-          setButtonDisabled(false);
-          navigate('/capture')
-        }} altText="Try again">Try again</ToastAction>,
+        action: (
+          <ToastAction
+            onClick={() => {
+              setButtonDisabled(false);
+              navigate("/capture");
+            }}
+            altText="Try again"
+          >
+            Try again
+          </ToastAction>
+        ),
         variant: "destructive",
-      })
+      });
     }
   }, [navigate, toast]);
 
