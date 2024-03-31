@@ -28,12 +28,9 @@ const CapturePage = () => {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await baseAxios.post(
-          '/facial-transform',
-          {
-            imgData: imageSrc,
-          },
-        );
+        const resp = await baseAxios.post("/facial-transform", {
+          imgData: imageSrc,
+        });
         const data = resp.data;
 
         navigate(
@@ -44,12 +41,19 @@ const CapturePage = () => {
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
-        action: <ToastAction onClick={() => {
-          setButtonDisabled(false);
-          navigate('/capture')
-        }} altText="Try again">Try again</ToastAction>,
+        action: (
+          <ToastAction
+            onClick={() => {
+              setButtonDisabled(false);
+              navigate("/capture");
+            }}
+            altText="Try again"
+          >
+            Try again
+          </ToastAction>
+        ),
         variant: "destructive",
-      })
+      });
     }
   }, [navigate, toast]);
 
@@ -87,7 +91,7 @@ const CapturePage = () => {
 
       <div className="absolute h-[720px] w-[720px] bottom-[480px] left-[190px] bg-center bg-[url('/person-shadow.svg')] bg-contain z-20 opacity-75 bg-no-repeat rounded-[48px]" />
       <Button
-        className={`flex flex-row items-center gap-3 absolute font-primaryBold bottom-[237px] left-[357px] text-7xl py-12 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 ${
+        className={`absolute flex flex-row items-center gap-3 font-primaryBold bottom-[237px] left-[357px] text-7xl py-12 px-16 rounded-full border-4 border-white bg-gradient-to-r from-button-primary to-button-secondary shadow-2xl z-50 ${
           buttonDisabled && "opacity-50 left-[338px]"
         }`}
         onClick={startCapture}
