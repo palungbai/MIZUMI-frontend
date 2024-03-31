@@ -28,7 +28,7 @@ const HomePage = () => {
       <div className="absolute bottom-[535px] left-[-54px] rotate-[5deg] border-[16px] border-white rounded-3xl">
         <img
           src="../01-home-page/present-model.png"
-          alt="cat"
+          alt="present-model"
           width={450}
           height={600}
         />
@@ -37,7 +37,7 @@ const HomePage = () => {
       <div className="absolute bottom-[496px] right-[-60px] rotate-[-10deg] border-[16px] border-white rounded-3xl">
         <img
           src="../01-home-page/future-model.png"
-          alt="cat"
+          alt="future-model"
           width={450}
           height={600}
         />
