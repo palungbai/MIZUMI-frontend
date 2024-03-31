@@ -28,12 +28,9 @@ const CapturePage = () => {
       const imageSrc = webcamRef.current?.getScreenshot();
 
       if (imageSrc) {
-        const resp = await baseAxios.post(
-          '/facial-transform',
-          {
-            imgData: imageSrc,
-          },
-        );
+        const resp = await baseAxios.post("/api/facial-transform", {
+          imgData: imageSrc,
+        });
         const data = resp.data;
 
         navigate(
@@ -44,12 +41,19 @@ const CapturePage = () => {
       toast({
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
-        action: <ToastAction onClick={() => {
-          setButtonDisabled(false);
-          navigate('/capture')
-        }} altText="Try again">Try again</ToastAction>,
+        action: (
+          <ToastAction
+            onClick={() => {
+              setButtonDisabled(false);
+              navigate("/capture");
+            }}
+            altText="Try again"
+          >
+            Try again
+          </ToastAction>
+        ),
         variant: "destructive",
-      })
+      });
     }
   }, [navigate, toast]);
 
