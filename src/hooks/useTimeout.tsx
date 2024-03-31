@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useIdleTimer } from "react-idle-timer";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const useTimeout = () => {
+export const useTimeout = ({ duration }: { duration: number }) => {
   const [status, setStatus] = useState<"idle" | "active">("active");
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const useTimeout = () => {
   };
 
   const { getRemainingTime } = useIdleTimer({
-    timeout: 10000,
+    timeout: duration,
     onActive,
     onIdle,
   });

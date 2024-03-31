@@ -11,9 +11,12 @@ import { useRecordVideo } from "@/hooks/useRecordVideo";
 import LinkButton from "@/components/LinkButton";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useTimeout } from "@/hooks/useTimeout";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout";
 
 const ResultPage = () => {
   const navigate = useNavigate();
+  useTimeout({ duration: DEFAULT_TIMEOUT })
   const { id, noSunscreenRefId, sunscreenRefId } = useUrlQuery();
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
   const [noSunscreenImgUrl, setNoSunscreenImgUrl] = useState<string>("");

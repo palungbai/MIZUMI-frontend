@@ -7,6 +7,8 @@ import CountdownTimer from "@/components/CountdownTimer";
 import Spinner from "@/components/Spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useTimeout } from "@/hooks/useTimeout";
+import { DEFAULT_TIMEOUT } from "@/constants/timeout";
 
 const videoConstraints = {
   width: 720,
@@ -22,6 +24,7 @@ const CapturePage = () => {
   const [isCounting, setIsCounting] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { toast } = useToast();
+  useTimeout({ duration: DEFAULT_TIMEOUT })
 
   const capture = useCallback(async () => {
     try {
