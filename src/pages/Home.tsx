@@ -12,7 +12,7 @@ import {
 
 const HomePage = () => {
   return (
-    <div className="relative flex flex-col overflow-hidden w-1080 h-1920 bg-[url('/01-home-page/homePageBg.svg')]">
+    <div className="relative flex flex-col overflow-hidden w-1080 h-1920 bg-[url('/01-home-page/homePageBg.png')]">
       <img
         src="../01-home-page/product.png"
         alt="product"
