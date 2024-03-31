@@ -8,10 +8,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { DialogClose } from "@radix-ui/react-dialog";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export const ConsentModal: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -147,16 +150,18 @@ export const ConsentModal: React.FC = () => {
           </label>
         </DialogHeader>
         <DialogFooter className="flex justify-between">
-          <Button className="font-primaryRegular text-3xl py-3 px-5 justify-start bg-red-500">
-            <a href="/capture">ปฎิเสธ</a>
-          </Button>
+          <DialogClose asChild>
+            <Button className="font-primaryRegular text-3xl py-3 px-5 justify-start bg-red-500">
+              ยกเลิก
+            </Button>
+          </DialogClose>
 
           <Button
-            className={`font-primaryRegular text-3xl py-3 px-5 justify-end bg-green-400 ${
-              !isChecked && "opacity-50 pointer-events-none "
-            }`}
+            className={`font-primaryRegular text-3xl py-3 px-5 justify-end bg-green-400`}
+            disabled={!isChecked}
+            onClick={() => navigate("/capture")}
           >
-            <a href="/capture">เล่นเลย</a>
+            ยอมรับ
           </Button>
         </DialogFooter>
       </DialogContent>

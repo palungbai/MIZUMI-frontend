@@ -9,6 +9,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useTimeout } from "@/hooks/useTimeout";
 import { DEFAULT_TIMEOUT } from "@/constants/timeout";
+import { useLoadBg } from "@/hooks/useLoadBg";
+import { LoadingPage } from "./LoadingPage";
 
 const videoConstraints = {
   width: 720,
@@ -17,6 +19,7 @@ const videoConstraints = {
 };
 
 const CapturePage = () => {
+  const { isBgLoaded } = useLoadBg("/02-capture-page/capturing-page-bg.png");
   const DEFAULT_COUNT_DOWN_TIME = 5;
   const webcamRef = useRef<Webcam>(null);
   const navigate = useNavigate();
@@ -78,6 +81,8 @@ const CapturePage = () => {
       }, 1000);
     }
   };
+
+  if (!isBgLoaded) return <LoadingPage />;
 
   return (
     <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/02-capture-page/capturing-page-bg.png')] bg-contain">

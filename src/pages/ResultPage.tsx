@@ -13,9 +13,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useTimeout } from "@/hooks/useTimeout";
 import { DEFAULT_TIMEOUT } from "@/constants/timeout";
+import { useLoadBg } from "@/hooks/useLoadBg";
 
 const ResultPage = () => {
   const navigate = useNavigate();
+  const { isBgLoaded } = useLoadBg("/04-result-page/result-page-bg.png");
 
   const { id, noSunscreenRefId, sunscreenRefId } = useUrlQuery();
   const [sunscreenImgUrl, setSunscreenImgUrl] = useState<string>("");
@@ -60,7 +62,7 @@ const ResultPage = () => {
     },
   });
 
-  if (isLoading) {
+  if (isLoading || !isBgLoaded) {
     return <LoadingPage />;
   }
 

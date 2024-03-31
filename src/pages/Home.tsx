@@ -1,6 +1,12 @@
 import { ConsentModal } from "@/components/ConsentModal";
+import { LoadingPage } from "./LoadingPage";
+import { useLoadBg } from "@/hooks/useLoadBg";
 
 const HomePage = () => {
+  const { isBgLoaded } = useLoadBg("/01-home-page/homePageBg.svg");
+
+  if (!isBgLoaded) return <LoadingPage />;
+
   return (
     <div className="relative flex flex-col overflow-hidden w-1080 h-1920 bg-[url('/01-home-page/homePageBg.svg')]">
       <img

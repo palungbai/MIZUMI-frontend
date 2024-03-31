@@ -1,8 +1,16 @@
 import LinkButton from "@/components/LinkButton";
+import { useLoadBg } from "@/hooks/useLoadBg";
 import { useTimeout } from "@/hooks/useTimeout";
+import { LoadingPage } from "./LoadingPage";
 
 const AdsPage = () => {
-  useTimeout({ duration: 60 * 1000 })
+  const { isBgLoaded } = useLoadBg(
+    "/06-advertising-page/advertising-page-bg.png"
+  );
+  useTimeout({ duration: 60 * 1000 });
+
+  if (!isBgLoaded) return <LoadingPage />;
+
   return (
     <div className="relative flex flex-col w-1080 h-1920 overflow-hidden bg-[url('/06-advertising-page/advertising-page-bg.png')] bg-contain">
       <img
