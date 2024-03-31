@@ -2,15 +2,18 @@ import LinkButton from "@/components/LinkButton";
 import { useToast } from "@/components/ui/use-toast";
 import { UrlKey } from "@/constants/UrlKeys";
 import { DEFAULT_TIMEOUT } from "@/constants/timeout";
+import { useLoadBg } from "@/hooks/useLoadBg";
 import { useTimeout } from "@/hooks/useTimeout";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useNavigate } from "react-router-dom";
+import { LoadingPage } from "./LoadingPage";
 
 const DisplayPage = () => {
-  useTimeout({ duration: DEFAULT_TIMEOUT })
+  useTimeout({ duration: DEFAULT_TIMEOUT });
   const sunscreenUrl = localStorage.getItem(UrlKey.URL);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { isBgLoaded } = useLoadBg("/05-display-page/display-page-bg.png");
 
   if (!sunscreenUrl) {
     toast({
@@ -24,6 +27,8 @@ const DisplayPage = () => {
       variant: "destructive",
     });
   }
+
+  if (!isBgLoaded) return <LoadingPage />;
 
   return (
     <>
