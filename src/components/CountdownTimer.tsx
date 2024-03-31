@@ -13,7 +13,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
         <div>
           <div className="flex flex-row justify-center gap-4 mt-[1474px] ">
             <img
-              src="../../public/arrow-up-icon.svg"
+              src="/arrow-up-icon.svg"
               alt="arrow-up"
               className="w-[70px] h-[70px] self-center "
             />
