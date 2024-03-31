@@ -30,7 +30,7 @@ export const useTimeout = ({ duration }: { duration: number }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const remainingTime = Math.ceil(getRemainingTime() / 1000);
-      console.log(remainingTime);
+
       if (remainingTime == 5) {
         toast({
           title: "Warning",
