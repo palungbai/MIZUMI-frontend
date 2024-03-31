@@ -46,7 +46,7 @@ const CapturePage = () => {
         description: "There was a problem with your request.",
         action: <ToastAction onClick={() => {
           setButtonDisabled(false);
-          navigate('/capture')
+          navigate('/#/capture')
         }} altText="Try again">Try again</ToastAction>,
         variant: "destructive",
       })

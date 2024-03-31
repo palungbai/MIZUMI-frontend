@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { LoadingPage } from "@/pages/LoadingPage";
 import { Suspense, lazy } from "react";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 const HomePage = lazy(() => import("@/pages/Home"));
 const CapturePage = lazy(() => import("@/pages/CapturePage"));
@@ -13,7 +13,7 @@ const AdsPage = lazy(() => import("@/pages/AdsPage"));
 const AppRouter = () => {
   return (
     <>
-      <BrowserRouter basename="">
+      <HashRouter basename="">
         <Routes>
           <Route path="/" element={
             <Suspense fallback={<LoadingPage />}>
@@ -41,7 +41,7 @@ const AppRouter = () => {
             </Suspense>
           } />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
       <Toaster />
     </>
   );

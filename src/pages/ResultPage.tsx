@@ -66,7 +66,7 @@ const ResultPage = () => {
         </a>
         <LinkButton
           content="รับครีมกันแดด"
-          href="/display"
+          href="/#/display"
           icon={<img src="/next-icon.svg" />}
           className="flex flex-row items-center gap-4"
         />

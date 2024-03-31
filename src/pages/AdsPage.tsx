@@ -11,7 +11,7 @@ const AdsPage = () => {
 
       <LinkButton
         content="กลับหน้าเเรก"
-        href="/"
+        href="/#"
         icon={<img src="/next-icon.svg" />}
         className="absolute flex flex-row items-center gap-4 bottom-[239px] left-[333px]"
       />

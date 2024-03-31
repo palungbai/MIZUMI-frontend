@@ -156,7 +156,7 @@ export const ConsentModal: React.FC = () => {
               !isChecked && "opacity-50 pointer-events-none "
             }`}
           >
-            <a href="/capture">เล่นเลย</a>
+            <a href="/#/capture">เล่นเลย</a>
           </Button>
         </DialogFooter>
       </DialogContent>

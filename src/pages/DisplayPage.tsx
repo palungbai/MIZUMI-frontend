@@ -54,7 +54,7 @@ const DisplayPage = () => {
 
         <LinkButton
           content="รับครีมกันแดด"
-          href="/ads"
+          href="/#/ads"
           className="absolute bottom-[168px] left-[357px]"
         />
       </div>
