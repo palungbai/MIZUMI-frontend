@@ -63,7 +63,7 @@ const ResultPage = () => {
   });
 
   if (isLoading || !isBgLoaded) {
-    return <LoadingPage />;
+    return <LoadingPage shouldShowLoadingBar={true} />;
   }
 
   const NavigationButtons = () => {
