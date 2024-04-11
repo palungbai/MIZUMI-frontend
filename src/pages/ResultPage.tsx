@@ -63,7 +63,7 @@ const ResultPage = () => {
   });
 
   if (isLoading || !isBgLoaded) {
-    return <LoadingPage />;
+    return <LoadingPage shouldShowLoadingBar={true} />;
   }
 
   const NavigationButtons = () => {
@@ -71,9 +71,11 @@ const ResultPage = () => {
     useRecordVideo();
     return (
       <div className="absolute bottom-[168px] flex flex-row items-center justify-between w-full px-10">
-        <a href="/" className="bg-white rounded-full p-7">
-          <img src="/back-icon.svg" width="60px" />
-        </a>
+        <LinkButton
+          href="/"
+          icon={<img src="/back-icon.svg" width="60px" />}
+          className="rounded-full p-7 from-white to-white"
+        />
         <LinkButton
           content="รับครีมกันแดด"
           href="/display"
