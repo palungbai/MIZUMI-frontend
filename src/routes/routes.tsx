@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
+import { useGetToken } from "@/hooks/useGetToken";
 import { LoadingPage } from "@/pages/LoadingPage";
 import { Suspense, lazy } from "react";
 
@@ -11,6 +12,7 @@ const DisplayPage = lazy(() => import("@/pages/DisplayPage"));
 const AdsPage = lazy(() => import("@/pages/AdsPage"));
 
 const AppRouter = () => {
+  useGetToken();
   return (
     <>
       <BrowserRouter basename="">

@@ -10,6 +10,12 @@ const HomePage = () => {
   return (
     <div className="relative flex flex-col overflow-hidden w-1080 h-1920 bg-[url('/01-home-page/homePageBg.png')]">
       <img
+        src="../01-home-page/ParagonLogo.png"
+        alt="product"
+        className="absolute z-30 w-[130px] left-[346px] top-[28px] rounded-lg scale-90"
+      />
+
+      <img
         src="../01-home-page/product.png"
         alt="product"
         className="absolute z-30"
