@@ -1,1 +1,0 @@
-nativefier --icon './MIZUMI-frontend/public/mizumi.ico' --name 'Mizumi' --disable-context-menu --full-screen --hide-window-frame --disable-dev-tools 'https://mizumi-frontend.vercel.app?location={location}'
