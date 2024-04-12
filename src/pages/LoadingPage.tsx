@@ -8,7 +8,7 @@ const LoadingPage: React.FC<Props> = ({ shouldShowLoadingBar }) => {
   const location = localStorage.getItem("location");
 
   return (
-    <div className="w-full h-[100vh] bg-[url('/03-waiting-page/waiting-bg.png')] bg-contain relative">
+    <div className="w-full h-[100vh] bg-[url('/03-waiting-page/waiting-bg.png')] overflow-hidden bg-contain relative">
       <div className="absolute repeat-infinite animate-spin-slow top-[185px] right-[280px]">
         <img
           src="/03-waiting-page/sun.svg"
